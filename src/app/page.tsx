@@ -1,5 +1,5 @@
 import { HeroSection } from "@/components/Hero";
-import { getHomepageData } from "../lib/getPage";
+import { getHomepageData } from "../lib/getHomepage";
 import { CardsWithIconSection } from "@/components/Homepage";
 import { SectionBgImage, TextHeadingCollapse } from "@/components/common";
 import { OffersSectionList } from "@/components/Offers";
@@ -7,9 +7,19 @@ import { BlockRenderer } from "@/components/BlockRenderer";
 import { JocCard } from "@/components/Jocuri";
 
 export default async function Home() {
-  const data = await getHomepageData();
+  const {
+    casinos,
+    hero,
+    homepage,
+    latestPosts,
+    homepageAdvantages,
+    homepageCazinouri,
+    homepageSlots,
+    jocuri,
+    blocks,
+  } = await getHomepageData();
 
-  const sortedCasinos = data.casinos
+  const sortedCasinos = casinos
     .filter((casino: any) => !casino.casinoGeneralFields.disableCasino)
     .sort(
       (a: any, b: any) =>
@@ -17,37 +27,35 @@ export default async function Home() {
         parseFloat(a.casinoGeneralFields.rating)
     );
 
-  console.log(data.jocuri);
-
   return (
     <main id="primary" className="homepage-content-area">
       {/* HERO AREA */}
       <HeroSection
-        title={data.hero.pageTitle}
-        description={data.hero.pageDescription}
-        bgImage={data.homepage.featuredImage.node.sourceUrl}
-        latestPosts={data.latestPosts}
+        title={hero.pageTitle}
+        description={hero.pageDescription}
+        bgImage={homepage.featuredImage.node.sourceUrl}
+        latestPosts={latestPosts}
       />
 
       {/* HOMEPAGE ADVANTAGES CARDS */}
 
       <SectionBgImage
-        bgImageUrl={data.homepageAdvantages.backgroundWin.bgImage.sourceUrl}
-        bgImageAltText={data.homepageAdvantages.backgroundWin.bgImage.altText}
-        bgOverlay={data.homepageAdvantages.backgroundWin.gradient}
+        bgImageUrl={homepageAdvantages.backgroundWin.bgImage.sourceUrl}
+        bgImageAltText={homepageAdvantages.backgroundWin.bgImage.altText}
+        bgOverlay={homepageAdvantages.backgroundWin.gradient}
         sectionClasses="homepage-win relative"
       >
         <div className="ast-container container">
           <TextHeadingCollapse
-            title={data.homepageAdvantages.winTitlu}
-            description={data.homepageAdvantages.winText}
-            textReadMore={data.homepageAdvantages.textWinReadMore}
+            title={homepageAdvantages.winTitlu}
+            description={homepageAdvantages.winText}
+            textReadMore={homepageAdvantages.textWinReadMore}
           />
           <CardsWithIconSection
-            card1={data.homepageAdvantages.card1}
-            card2={data.homepageAdvantages.card2}
-            card3={data.homepageAdvantages.card3}
-            card4={data.homepageAdvantages.card4}
+            card1={homepageAdvantages.card1}
+            card2={homepageAdvantages.card2}
+            card3={homepageAdvantages.card3}
+            card4={homepageAdvantages.card4}
           />
         </div>
       </SectionBgImage>
@@ -55,28 +63,24 @@ export default async function Home() {
       {/* HOMEPAGE CASINOS OFFERS */}
 
       <SectionBgImage
-        bgImageUrl={
-          data.homepageCazinouri.backgroundCazinouri.pattern.sourceUrl
-        }
-        bgImageAltText={
-          data.homepageCazinouri.backgroundCazinouri.pattern.altText
-        }
-        bgOverlay={data.homepageCazinouri.backgroundCazinouri.gradient}
+        bgImageUrl={homepageCazinouri.backgroundCazinouri.pattern.sourceUrl}
+        bgImageAltText={homepageCazinouri.backgroundCazinouri.pattern.altText}
+        bgOverlay={homepageCazinouri.backgroundCazinouri.gradient}
         sectionClasses="homepage-casinos relative"
         pattern={true}
-        buttonText={data.homepageCazinouri.casinoSectionButon.textButon}
-        buttonUri={data.homepageCazinouri.casinoSectionButon.link.uri}
+        buttonText={homepageCazinouri.casinoSectionButon.textButon}
+        buttonUri={homepageCazinouri.casinoSectionButon.link.uri}
       >
         <div className="ast-container container">
           <TextHeadingCollapse
-            title={data.homepageCazinouri.casinoTitlu}
-            description={data.homepageCazinouri.casinoText}
-            textReadMore={data.homepageCazinouri.textCasinoReadMore}
+            title={homepageCazinouri.casinoTitlu}
+            description={homepageCazinouri.casinoText}
+            textReadMore={homepageCazinouri.textCasinoReadMore}
           />
           <OffersSectionList
             casinos={sortedCasinos}
-            casinosMaxLength={data.homepageCazinouri.numarCazinouri}
-            offerType={data.homepageCazinouri.offerType}
+            casinosMaxLength={homepageCazinouri.numarCazinouri}
+            offerType={homepageCazinouri.offerType}
           />
         </div>
       </SectionBgImage>
@@ -86,27 +90,27 @@ export default async function Home() {
       {/* HOMEPAGE JOCURI SLOTS AREA */}
       <SectionBgImage
         bgImageUrl={
-          data.homepageSlots.backgroundSlots.bgImage?.sourceUrl ||
-          data.homepageSlots.backgroundSlots.pattern?.sourceUrl
+          homepageSlots.backgroundSlots.bgImage?.sourceUrl ||
+          homepageSlots.backgroundSlots.pattern?.sourceUrl
         }
         bgImageAltText={
-          data.homepageSlots.backgroundSlots.bgImage?.altText ||
-          data.homepageSlots.backgroundSlots.pattern?.altText
+          homepageSlots.backgroundSlots.bgImage?.altText ||
+          homepageSlots.backgroundSlots.pattern?.altText
         }
-        bgOverlay={data.homepageSlots.backgroundSlots.gradient}
+        bgOverlay={homepageSlots.backgroundSlots.gradient}
         sectionClasses="homepage-slots relative"
         pattern={true}
-        buttonText={data.homepageSlots.slotsSectionButon.textButon}
-        buttonUri={data.homepageSlots.slotsSectionButon.link.uri}
+        buttonText={homepageSlots.slotsSectionButon.textButon}
+        buttonUri={homepageSlots.slotsSectionButon.link.uri}
       >
         <div className="ast-container container">
           <TextHeadingCollapse
-            title={data.homepageSlots.slotsTitlu}
-            description={data.homepageSlots.slotsText}
-            textReadMore={data.homepageSlots.textSlotsReadMore}
+            title={homepageSlots.slotsTitlu}
+            description={homepageSlots.slotsText}
+            textReadMore={homepageSlots.textSlotsReadMore}
           />
           <div className="featured-slots row">
-            {data.jocuri.map((slot: any) => (
+            {jocuri.map((slot: any) => (
               <JocCard
                 key={slot.databaseId}
                 postID={slot.databaseId}
@@ -126,7 +130,7 @@ export default async function Home() {
       <section className="homepage-content">
         <div className="casino-content page-content bottom-content">
           <div className="ast-container container">
-            <BlockRenderer blocks={data.blocks} />
+            <BlockRenderer blocks={blocks} />
           </div>
         </div>
       </section>

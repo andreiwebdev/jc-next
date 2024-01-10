@@ -15725,14 +15725,52 @@ a.text-dark:hover {
 }
 /*# sourceMappingURL=bootstrap.min.css.map */
 
-
-
 ul {
   list-style: disc !important;
 }
 ol {
   list-style: auto !important;
 }
-ul,ol {
+ul,
+ol {
   margin: 0 0 1.5em 3em !important;
+}
+
+/* Basic table styling */
+.wp-block-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5em;
+}
+
+/* Header and body styling */
+.wp-block-table thead {
+  background-color: #f3f4f5;
+}
+
+.wp-block-table th,
+.wp-block-table td {
+  padding: 0.5em;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+/* Center alignment for table headers and data cells */
+.wp-block-table .has-text-align-center {
+  text-align: center;
+}
+
+/* Styling for fixed layout */
+.wp-block-table .has-fixed-layout {
+  table-layout: fixed;
+  width: 100%;
+}
+
+/* Responsive behavior */
+@media screen and (max-width: 782px) {
+  .wp-block-table table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 }

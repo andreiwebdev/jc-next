@@ -1,19 +1,23 @@
 export const convertOfferType = (offerType: string) => {
-  let offer_short = "";
+  let offerShort = "";
 
   if (offerType == "tcfulloffer") {
     //With deposit
-    offer_short = "tc";
+    offerShort = "tc";
   } else if (offerType == "extrafulloffer") {
     //No deposit
-    offer_short = "so1";
+    offerShort = "so1";
   } else if (offerType == "lcfulloffer") {
     //Live casino
-    offer_short = "so2";
+    offerShort = "so2";
   } else if (offerType == "cpfulloffer") {
-    //Live casino
-    offer_short = "cp";
+    //Sport casino
+    offerShort = "cp";
   }
 
-  return offer_short;
+  return offerShort;
+};
+
+export const getAffLink = (offerShort: string, casinoName: string) => {
+  return `/aff/so-${offerShort}-${casinoName}`;
 };

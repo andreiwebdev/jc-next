@@ -1,5 +1,6 @@
 "use client";
 
+import { getAffLink } from "@/lib/offers";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -18,6 +19,7 @@ export const OfferList = ({
 }: any) => {
   const [openDesc, setOpenDesc] = useState(false);
   const markupOfferDescription = { __html: offerDescription };
+  const affLink = getAffLink(offerShort, casinoLink);
 
   return (
     <div className="ast-col-md-12">
@@ -111,10 +113,7 @@ export const OfferList = ({
             <div className="vlines"></div>
             <div className="ast-col-md-3 ast-col-xs-12 col-12 col-md-3">
               <div className="button-wrapper">
-                <Link
-                  className="button button-green brad10"
-                  href={`/aff/so-${offerShort}-${casinoLink}/`}
-                >
+                <Link className="button button-green brad10" href={affLink}>
                   Ia bonusul!
                 </Link>
                 <Link className="casino-review-link" href={casinoReviewUri}>

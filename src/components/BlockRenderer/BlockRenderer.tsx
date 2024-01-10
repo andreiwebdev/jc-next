@@ -4,9 +4,12 @@ import { Paragraph } from "../Paragraph";
 import { List } from "../List";
 import { YoastFaq } from "../YoastFaq";
 import { MoreInfoToggle } from "../CustomBlocks";
+import { Columns } from "../Columns";
+import { Column } from "../Column";
+import { Table } from "../Table";
 
 export const BlockRenderer = ({ blocks }: any) => {
-  return blocks.map((block: any) => {
+  return blocks?.map((block: any) => {
     switch (block.name) {
       case "core/heading": {
         return (
@@ -48,6 +51,30 @@ export const BlockRenderer = ({ blocks }: any) => {
             />
           )
         );
+      }
+      case "core/column": {
+        return (
+          <Column key={block.id} width={block.attributes?.width}>
+            <BlockRenderer blocks={block.innerBlocks} />
+          </Column>
+        );
+      }
+      case "core/group":
+      case "core/block": {
+        return <BlockRenderer key={block.id} blocks={block.innerBlocks} />;
+      }
+      case "core/columns": {
+        return (
+          <Columns
+            key={block.id}
+            isStackedOnMobile={block.attributes.isStackedOnMobile}
+          >
+            <BlockRenderer blocks={block.innerBlocks} />
+          </Columns>
+        );
+      }
+      case "core/table": {
+        return <Table key={block.id} htmlContent={block.dynamicContent} />;
       }
       case "yoast/faq-block": {
         return (
