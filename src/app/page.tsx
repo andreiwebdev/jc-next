@@ -42,7 +42,11 @@ export default async function Home() {
       <SectionBgImage
         bgImageUrl={homepageAdvantages.backgroundWin.bgImage.sourceUrl}
         bgImageAltText={homepageAdvantages.backgroundWin.bgImage.altText}
-        bgOverlay={homepageAdvantages.backgroundWin.gradient}
+        overlayExtraCss={{
+          background:
+            "linear-gradient(90deg, rgba(12,168,251,1) 0%, rgba(140,75,242,1) 100%)",
+          opacity: 0.9,
+        }}
         sectionClasses="homepage-win relative"
       >
         <div className="ast-container container">
@@ -65,7 +69,10 @@ export default async function Home() {
       <SectionBgImage
         bgImageUrl={homepageCazinouri.backgroundCazinouri.pattern.sourceUrl}
         bgImageAltText={homepageCazinouri.backgroundCazinouri.pattern.altText}
-        bgOverlay={homepageCazinouri.backgroundCazinouri.gradient}
+        overlayExtraCss={{
+          background:
+            "radial-gradient(circle, rgba(64,0,83,1) 0%, rgba(3,9,15,1) 100%)",
+        }}
         sectionClasses="homepage-casinos relative"
         pattern={true}
         buttonText={homepageCazinouri.casinoSectionButon.textButon}
@@ -98,6 +105,10 @@ export default async function Home() {
           homepageSlots.backgroundSlots.pattern?.altText
         }
         bgOverlay={homepageSlots.backgroundSlots.gradient}
+        overlayExtraCss={{
+          background:
+            "radial-gradient(circle, rgba(64,0,83,1) 0%, rgba(3,9,15,1) 100%)",
+        }}
         sectionClasses="homepage-slots relative"
         pattern={true}
         buttonText={homepageSlots.slotsSectionButon.textButon}

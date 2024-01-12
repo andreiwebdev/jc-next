@@ -7,7 +7,7 @@ export const SectionBgImage = ({
   children,
   bgImageUrl,
   bgImageAltText,
-  bgOverlay,
+  overlayExtraCss,
   sectionClasses,
   pattern = false,
   buttonText = false,
@@ -40,7 +40,7 @@ export const SectionBgImage = ({
         ""
       )}
 
-      <div style={{ background: `${bgOverlay}` }} className="overlay"></div>
+      <div style={overlayExtraCss} className="overlay"></div>
     </section>
   );
 };
