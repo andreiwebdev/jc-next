@@ -15774,3 +15774,7 @@ ol {
     white-space: nowrap;
   }
 }
+
+.post .post-excerpt .read-more {
+  display: none;
+}
